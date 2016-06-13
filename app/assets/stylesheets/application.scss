@@ -1,0 +1,131 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require bootstrap_and_overrides
+ *= require_tree .
+ *= require_self
+ */
+
+ .logo{
+   font-family: 'Pacifico', cursive;
+   font-size: 42px;
+   background: linear-gradient(#DAD299, #B0DAB9);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+ }
+
+ .homepage {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: linear-gradient(to left, #FFA17F, #00223E);
+   background-size: 200% 200%;
+   background-position: 40% 50%;
+   z-index: 100;
+   overflow: hidden;
+
+
+   img {
+     position: absolute;
+     -webkit-filter: grayscale(100%);
+     transition: grayscale 1.5s ease;
+   }
+
+   .redirect {
+     color: #fff;
+     background-color: rgba(0,0,0,0.5);
+     z-index: 2;
+     position: absolute;
+     padding: 10px 40px;
+     font-size: 26px;
+     border: 2px rgba(100,100,100,0.1) solid;
+     top: 40%;
+     transition: all 0.2s ease;
+     cursor: pointer;
+     font-family: 'Shadows Into Light', cursive;
+   }
+
+   .female {
+     .to-female {
+       right: -215px;
+     }
+
+     img {
+        width: 100vh;
+        right: 0;
+        top: 55px;
+      }
+    }
+
+   .male {
+     .to-male {
+        left: -280px;
+      }
+
+    img {
+      top: 55px;
+      left: 28vh;
+      height: 100%;
+    }
+  }
+
+   .female:hover, .male:hover {
+     .to-female {
+       right: 42vh
+     }
+
+     .to-male {
+       left: 34vh;
+     }
+
+     img {
+       -webkit-filter: grayscale(0);
+     }
+   }
+ }
+
+ .homepage.animate-male {
+     animation: homepageAnimation-male 1s;
+ }
+
+ .homepage.animate-female {
+     animation: homepageAnimation-female 1s;
+ }
+
+ .success-message {
+   position: absolute;
+   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   left: 37%;
+   top: 10%;
+   z-index: 9999;
+ }
+
+ .welcome {
+   padding-top: 10px;
+   padding-bottom: 10px;
+   display: block;
+   padding: 12px 15px;
+   color: #777;
+   font-size: 18px;
+ }
+
+ @keyframes homepageAnimation-male {
+   0% {background-position: 40% 50%}
+   100% {background-position: 0% 50%}
+ }
+
+ @keyframes homepageAnimation-female {
+   0% {background-position: 40% 50%}
+   100% {background-position: 100% 50%}
+ }

@@ -1,0 +1,33 @@
+<div class="admin">
+  <div class="photos">
+    <h1>Manage Photos</h1>
+    <%= link_to "Add Image", photos_path, method: :post %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Images</th>
+          <th>Link</th>
+          <th>Provider</th>
+          <th>Created at</th>
+          <th>status</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @photos.each do |p| %>
+        <tr>
+          <td><img src="<%= p.link %>"/></td>
+          <td><%= p.link %></td>
+          <td><%= p.photo_source.account_id %></td>
+          <td><%= p.created_at %></td>
+          <td><%= p.published %></td>
+          <td>
+            <%= link_to publish(p), photo_path(p), method: :patch %>
+            <%= link_to "Delete", photo_path(p), method: :delete, data:{confirm: "Are you sure to delete this photo?"}%>
+        </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

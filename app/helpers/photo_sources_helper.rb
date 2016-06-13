@@ -1,0 +1,2 @@
+module PhotoSourcesHelper
+end
