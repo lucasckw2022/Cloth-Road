@@ -5,8 +5,10 @@ class CommentContainer extends React.Component{
   printComments(){
     return this.props.comments.map((comment)=>{
       return (
-        <div className="comments" key={comment.id}>
-          <div className="col-sm-3"><strong>{comment.user.first_name} {comment.user.last_name}:</strong></div>
+        <div className="comments" key={comment.id} >
+          <div className="col-sm-3">
+            <strong>{comment.user.first_name} {comment.user.last_name}:</strong>
+          </div>
           <div className="col-sm-9">{comment.body}</div>
         </div>
       )
@@ -29,7 +31,9 @@ class CommentForm extends React.Component{
     event.preventDefault();
     this.setState({error: ""});
     var body = this.refs.body.value.trim()
+    //get the userInfo by running the passUserInfo function in Main component in main.jsx
     var user_id = this.props.userInfo()
+    //set props and get the post id from PostContainer component in post.jsx
     var post_id = this.props.post
     $.ajax({
       url: 'http://localhost:3000/posts/'+ post_id+'/comments',
@@ -39,9 +43,11 @@ class CommentForm extends React.Component{
     done((data)=>{
       if(data.errors){
         this.setState({error: data.errors[0]})
-      } else{
+      } else {
+        //redirect to posts page
         this.props.changeToPosts()
-        this.props.showCommentForm()
+        //close the comment form
+        this.props.toggleCommentForm()
         this.props.showSuccessMessage("Created Comment SuccessFully!")
       }
     })

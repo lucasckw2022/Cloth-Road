@@ -1,14 +1,14 @@
 class Main extends React.Component{
   constructor(props){
     super(props);
-    this.state = {showSignInModal: false,
-                  showOverlay:  false,
-                  overlayBody: "",
-                  signin: false,
-                  userInfo: [],
+    this.state = {showSignInModal:      false,
+                  showOverlay:          false,
+                  overlayBody:          "",
+                  signin:               false,
+                  userInfo:             [],
                   toggleConfirmMessage: false,
-                  confirmMessage: "",
-                  showPostModal: false}
+                  confirmMessage:       "",
+                  showPostModal:        false}
     this.toggleSignInModal = this.toggleSignInModal.bind(this)
     this.handleOverlay = this.handleOverlay.bind(this)
     this.signin = this.signin.bind(this)
@@ -50,7 +50,11 @@ class Main extends React.Component{
       <nav className="navbar navbar-inverse">
         <div className="container-fluid">
           <div className="navbar-header">
-            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <button
+            type="button"
+            className="navbar-toggle"
+            data-toggle="collapse"
+            data-target="#myNavbar">
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
@@ -60,27 +64,66 @@ class Main extends React.Component{
           <div className="collapse navbar-collapse" id="myNavbar">
             <ul className="nav navbar-nav">
               <li><Link to='/'>Style</Link></li>
-              <li><a href="#" onClick={this.togglePostModal}><PostModal show={this.state.showPostModal} close={this.togglePostModal} userInfo={this.passUserInfo} showSuccessMessage={this.handleOverlay}/>Community</a></li>
+              <li>
+                <a href="#" onClick={this.togglePostModal}>
+                  <PostModal
+                  show={this.state.showPostModal}
+                  close={this.togglePostModal}
+                  userInfo={this.passUserInfo}
+                  showSuccessMessage={this.handleOverlay} />
+                  Community
+                </a>
+              </li>
             </ul>
             {this.state.signin ?
               <ul className="nav navbar-nav navbar-right">
-                <li className="welcome">Welcome, {this.state.signin ? this.state.userInfo.last_name : null} {this.state.signin ? this.state.userInfo.first_name : null}</li>
-                <li><a href="#" onClick={()=>this.toggleConfirmMessage("Sign Out")}><span className="glyphicon glyphicon-user"></span> Sign Out</a></li>
+                <li className="welcome">
+                  Welcome,
+                  {this.state.signin ? this.state.userInfo.last_name : null} {this.state.signin ? this.state.userInfo.first_name : null}
+                </li>
+                <li>
+                  <a href="#" onClick={()=>this.toggleConfirmMessage("Sign Out")}>
+                    <span className="glyphicon glyphicon-user"></span>
+                    Sign Out
+                  </a>
+                </li>
               </ul>
               :
               <ul className="nav navbar-nav navbar-right">
-                <li><Link to='/user-sign-up'><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
-                <li><a href="#" onClick={this.toggleSignInModal}><span className="glyphicon glyphicon-log-in">
-                <SignInModal show={this.state.showSignInModal} close={this.toggleSignInModal}  signIn={this.signin} showSuccessMessage={this.handleOverlay}/>
-                </span> Login</a></li>
+                <li>
+                  <Link to='/user-sign-up'>
+                    <span className="glyphicon glyphicon-user"></span>
+                    Sign Up
+                  </Link>
+                </li>
+                <li>
+                  <a href="#" onClick={this.toggleSignInModal}>
+                    <span className="glyphicon glyphicon-log-in">
+                      <SignInModal
+                      show={this.state.showSignInModal}
+                      close={this.toggleSignInModal}
+                      signIn={this.signin}
+                      showSuccessMessage={this.handleOverlay} />
+                    </span>
+                    Login
+                  </a>
+                </li>
               </ul>
             }
           </div>
         </div>
       </nav>
-      {this.state.showOverlay ? <SucessMessage show={this.state.showOverlay} body={this.state.overlayBody}/> : null }
-      <ConfirmMessage show={this.state.toggleConfirmMessage} body={this.state.confirmMessage} close={this.toggleConfirmMessage} signOut={this.signOut}/>
-      <RouteHandler {...this.props}/>
+      {this.state.showOverlay ?
+        <SucessMessage
+        show={this.state.showOverlay}
+        body={this.state.overlayBody} />
+        : null }
+      <ConfirmMessage
+      show={this.state.toggleConfirmMessage}
+      body={this.state.confirmMessage}
+      close={this.toggleConfirmMessage}
+      signOut={this.signOut} />
+      <RouteHandler {...this.props} />
       </div>
     );
   }

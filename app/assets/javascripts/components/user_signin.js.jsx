@@ -1,26 +1,28 @@
 class UserSignInForm extends React.Component{
   constructor(props){
     super(props);
-    this.state = {error: ""}
+    this.state            = {error: ""}
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
   handleFormSubmit(event){
     event.preventDefault();
     this.setState({error: ""});
-    var email = this.refs.email.value.trim(),
+    var email    = this.refs.email.value.trim(),
         password = this.refs.password.value.trim();
+    //check if the email and password has been filled in
     if(email == "" || password == ""){
       this.setState({error: "Missing address or password"});
-    } else{
+    } else {
       $.ajax({
         url: 'http://localhost:3000/sessions',
         method: 'POST',
-        data: {email: email, password: password},
+        data: { email:    email,
+                password: password},
       }).
       done((data)=>{
         if(data.errors){
           this.setState({error: data.errors[0]})
-        } else{
+        } else {
           this.props.close();
           this.props.signIn(data);
           this.props.showSuccessMessage("Sign up successfully!");

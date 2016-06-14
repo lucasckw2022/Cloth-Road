@@ -1,7 +1,10 @@
 class ImageModal extends React.Component{
   render(){
     return(
-        <Modal className="image-modal" show={this.props.show} onHide={this.props.close}>
+        <Modal
+        className="image-modal"
+        show={this.props.show}
+        onHide={this.props.close}>
           <Modal.Body>
             <img src={this.props.link} />
             <a href={this.props.provider} target="_blank">@{this.props.source}</a>
@@ -13,11 +16,14 @@ class ImageModal extends React.Component{
 
 class SignInModal extends React.Component{
   render(){
-    var userSignInFormProps = { close: this.props.close,
+    var userSignInFormProps = { close:              this.props.close,
                                 showSuccessMessage: this.props.showSuccessMessage,
-                                signIn: this.props.signIn}
+                                signIn:             this.props.signIn}
     return(
-      <Modal className="sign-in-modal" show={this.props.show} onHide={this.props.close}>
+      <Modal
+      className="sign-in-modal"
+      show={this.props.show}
+      onHide={this.props.close}>
         <Modal.Body>
           <UserSignInForm {...userSignInFormProps}/>
         </Modal.Body>
@@ -41,7 +47,11 @@ class SucessMessage extends React.Component{
 class ConfirmMessage extends React.Component{
   render(){
     return(
-      <Modal bsSize="sm" className="confirm-message" show={this.props.show} onHide={this.props.close}>
+      <Modal
+      bsSize="sm"
+      className="confirm-message"
+      show={this.props.show}
+      onHide={this.props.close}>
         <Modal.Body>
           <div>Are You Sure To {this.props.body}?</div>
           <span className="btn btn-success" onClick={this.props.signOut}>Yes</span>
@@ -54,11 +64,15 @@ class ConfirmMessage extends React.Component{
 
 class PostModal extends React.Component{
   render(){
-    var postFormProps = { close: this.props.close,
-                          userInfo: this.props.userInfo,
+    var postFormProps = { close:              this.props.close,
+                          userInfo:           this.props.userInfo,
                           showSuccessMessage: this.props.showSuccessMessage}
     return(
-      <Modal className="post-modal" show={this.props.show} onHide={this.props.close} bsSize="lg">
+      <Modal
+      className="post-modal"
+      show={this.props.show}
+      onHide={this.props.close}
+      bsSize="lg">
         <Modal.Body>
           <PostContainer {...postFormProps}/>
         </Modal.Body>

@@ -7,22 +7,28 @@ class PostForm extends React.Component{
   handleFormSubmit(event){
     event.preventDefault();
     this.setState({error:[]})
-    var title = this.refs.title.value.trim()
-    var body = this.refs.body.value.trim()
+    var title   = this.refs.title.value.trim()
+    var body    = this.refs.body.value.trim()
+    //set the props to get the user id from running the passUserInfo function in Main component in Main.jsx
     var user_id = this.props.userInfo()
     $.ajax({
       url: "http://localhost:3000/posts",
       method: 'POST',
-      data: {title: title, body: body, user_id: user_id  },
+      data: { title:    title,
+              body:     body,
+              user_id:  user_id},
     }).
     done((data)=>{
+      //render the post list
       this.props.changeToPosts()
       this.props.showSuccessMessage()
     }).
     fail((xhr, status, err)=>{
       var error_list = [];
       for(err in xhr.responseJSON.errors){
-        error_list.push(this.state.error.concat(err +" "+ xhr.responseJSON.errors[err][0]))
+        error_list.push(
+          this.state.error.concat(err +" "+ xhr.responseJSON.errors[err][0])
+        )
       }
       this.setState({error: error_list})
     })
@@ -72,9 +78,9 @@ class PostContainer extends React.Component{
                   content: "posts",
                   toggleCommentForm: false}
     this.changeToPostForm = this.changeToPostForm.bind(this)
-    this.changeToPosts = this.changeToPosts.bind(this)
-    this.changeToPost = this.changeToPost.bind(this)
-    this.showCommentForm = this.showCommentForm.bind(this)
+    this.changeToPosts    = this.changeToPosts.bind(this)
+    this.changeToPost     = this.changeToPost.bind(this)
+    this.toggleCommentForm  = this.toggleCommentForm.bind(this)
   }
   componentWillMount(){
     $.ajax({
@@ -89,18 +95,24 @@ class PostContainer extends React.Component{
     return this.state.posts.map((post)=>{
       return (
         <tr key={post.id}>
-          <td><a href="javascript:void(0)" onClick={()=>{this.changeToPost(post)}}>{post.title}</a></td>
+          <td>
+            <a href="javascript:void(0)" onClick={()=>{this.changeToPost(post)}}>
+              {post.title}
+            </a>
+          </td>
           <td>{post.user.first_name} {post.user.last_name}</td>
         </tr>
       )
     })
   }
   createContent(post){
+    //render the posts/postForm/individual post by checking the state inside the modal
     if(this.state.content == "posts"){
       return this.showPosts()
     } else if(this.state.content == "postForm"){
       return this.showPostForm()
     } else if(this.state.content == "post"){
+      //passing the individual post info as params
       return this.showPost(post)
     }
   }
@@ -117,14 +129,26 @@ class PostContainer extends React.Component{
               {this.printPosts()}
             </tbody>
           </table>
-          {this.props.userInfo()==null ? null : <a href="javascript:void(0)" className="btn btn-default" onClick={this.changeToPostForm} >New Post</a>
+          {this.props.userInfo()==null ? null :
+            <a
+            href="javascript:void(0)"
+            className="btn btn-default"
+            onClick={this.changeToPostForm} >
+              New Post
+            </a>
           }
         </div>
       )
   }
   showPostForm(){
     return (
-      <PostForm changeToPosts={this.changeToPosts} userInfo={this.props.userInfo} showSuccessMessage={()=>{this.props.showSuccessMessage("Created Post SuccessFully!")}} close={this.props.close}/>
+      <PostForm
+      changeToPosts={this.changeToPosts}
+      userInfo={this.props.userInfo}
+      showSuccessMessage={
+        ()=>{this.props.showSuccessMessage("Created Post SuccessFully!")}
+      }
+      close={this.props.close}/>
     )
   }
   showPost(){
@@ -132,28 +156,48 @@ class PostContainer extends React.Component{
       <div>
         <h1>{this.state.post.title}</h1>
         <p>{this.state.post.body}</p>
-        {this.state.showCommentForm == false ? null : <CommentContainer comments={this.state.post.comments}/> }
-        {this.state.toggleCommentForm ? <CommentForm post={this.state.post.id} userInfo={this.props.userInfo} showCommentForm={this.showCommentForm} changeToPosts={this.changeToPosts} showSuccessMessage={this.props.showSuccessMessage}/> : null}
-        {this.props.userInfo()==null ? null :<a href="javascript:void(0)" className="btn btn-default" onClick={this.showCommentForm}>New Comment</a>}
-        <a href="javascript:void(0)" className="btn btn-default" onClick={this.changeToPosts}>Back To Post List</a>
+        {this.state.toggleCommentForm == false ? null : <CommentContainer comments={this.state.post.comments}/> }
+        {this.state.toggleCommentForm ?
+          <CommentForm
+          post={this.state.post.id}
+          userInfo={this.props.userInfo}
+          toggleCommentForm={this.toggleCommentForm}
+          changeToPosts={this.changeToPosts}
+          showSuccessMessage={this.props.showSuccessMessage}/>
+          : null}
+        {this.props.userInfo()==null ? null :
+          <a
+          href="javascript:void(0)"
+          className="btn btn-default"
+          onClick={this.toggleCommentForm}>
+            New Comment
+          </a>}
+        <a
+        href="javascript:void(0)"
+        className="btn btn-default"
+        onClick={this.changeToPosts}>
+          Back To Post List
+        </a>
       </div>
     )
   }
   changeToPosts(){
     this.setState({content: "posts"})
+    //force updating and fetch the data from database
     this.forceUpdate(this.componentWillMount())
   }
   changeToPostForm(){
     this.setState({content: "postForm"})
   }
   changeToPost(post){
+    //force updating and fetch the data from database
     this.forceUpdate(this.componentWillMount())
     this.setState({content: "post", post: post})
   }
   passPostInfo(){
     return this.state.post ? this.state.post.id : null
   }
-  showCommentForm(){
+  toggleCommentForm(){
     this.setState({toggleCommentForm: !this.state.toggleCommentForm})
   }
   render(){

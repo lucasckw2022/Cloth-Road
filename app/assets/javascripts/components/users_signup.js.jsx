@@ -1,21 +1,25 @@
 class UserSignUpForm extends React.Component{
   constructor(props){
     super(props)
-    this.state = {error: []}
+    this.state            = {error: []}
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
   handleFormSubmit(event){
     event.preventDefault();
     this.setState({error:[]})
-    var first_name = this.refs.first_name.value.trim();
-    var last_name = this.refs.last_name.value.trim();
-    var email = this.refs.email.value.trim();
-    var password = this.refs.password.value.trim();
-    var password_confirmation = this.refs.password_confirmation.value.trim();
+    var first_name            = this.refs.first_name.value.trim(),
+        last_name             = this.refs.last_name.value.trim(),
+        email                 = this.refs.email.value.trim(),
+        password              = this.refs.password.value.trim(),
+        password_confirmation = this.refs.password_confirmation.value.trim();
     $.ajax({
       url: "http://localhost:3000/users",
       method: 'POST',
-      data: {first_name: first_name, last_name: last_name, email: email, password: password, password_confirmation: password_confirmation},
+      data: { first_name:            first_name, 
+              last_name:             last_name, 
+              email:                 email, 
+              password:              password, 
+              password_confirmation: password_confirmation},
     }).
     done((data) => {
       HistoryLocation.push("/style")

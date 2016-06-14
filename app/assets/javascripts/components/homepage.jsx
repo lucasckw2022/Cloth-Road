@@ -8,11 +8,13 @@ class Homepage extends React.Component{
   toMaleLink(event){
     event.preventDefault();
     this.setState({style: "homepage animate-male"});
+    //go to male style main page
     setTimeout(()=>{HistoryLocation.push("/gentleman-style")},1000)
   }
   toFemaleLink(event){
     event.preventDefault();
     this.setState({style: "homepage animate-female"});
+    //go to female style main page
     setTimeout(()=>{HistoryLocation.push("/lady-style")},1000)
   }
   render(){
