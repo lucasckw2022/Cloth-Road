@@ -36,7 +36,7 @@ class CommentForm extends React.Component{
     //set props and get the post id from PostContainer component in post.jsx
     var post_id = this.props.post
     $.ajax({
-      url: 'http://localhost:3000/posts/'+ post_id+'/comments',
+      url: '/posts/'+ post_id+'/comments',
       method: 'POST',
       data: {body: body, post_id: post_id, user_id: user_id},
     }).

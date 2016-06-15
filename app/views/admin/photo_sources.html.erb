@@ -2,7 +2,7 @@
 <h1>Manage Photo Source</h1>
 <%= simple_form_for @photo_source, html:{class:"form-inline"} do |f| %>
   <%= f.input :account_id %>
-  <%= f.input :platform, collection: [['Facebook',:Facebook],['Pinterest',:Pinterest]] %>
+  <%= f.input :platform, collection: [['Facebook',:Facebook]] %>
   <%= f.input :styleType, collection: [['Female',:Female],['Male',:Male]]%>
   <%= f.submit %>
 <% end %>
@@ -12,6 +12,7 @@
     <th>Account Name</th>
     <th>Platform</th>
     <th>Style Type</th>
+    <th>Edit</th>
   </thead>
   <tbody>
     <% @photo_sources.each do |p| %>
@@ -19,6 +20,7 @@
         <td><%=p.account_id%></td>
         <td><%=p.platform%></td>
         <td><%=p.styleType%></td>
+        <td><%= link_to "Delete", photo_source_path(p), method: :delete, data:{confirm: "Are you sure to delete this photo sources?"}%><td>
       </tr>
     <% end %>
   </tbody>

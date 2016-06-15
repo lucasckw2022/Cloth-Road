@@ -12,7 +12,7 @@ class PostForm extends React.Component{
     //set the props to get the user id from running the passUserInfo function in Main component in Main.jsx
     var user_id = this.props.userInfo()
     $.ajax({
-      url: "http://localhost:3000/posts",
+      url: "/posts",
       method: 'POST',
       data: { title:    title,
               body:     body,

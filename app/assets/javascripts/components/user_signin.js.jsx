@@ -14,7 +14,7 @@ class UserSignInForm extends React.Component{
       this.setState({error: "Missing address or password"});
     } else {
       $.ajax({
-        url: 'http://localhost:3000/sessions',
+        url: '/sessions',
         method: 'POST',
         data: { email:    email,
                 password: password},

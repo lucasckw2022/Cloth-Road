@@ -13,7 +13,7 @@ class UserSignUpForm extends React.Component{
         password              = this.refs.password.value.trim(),
         password_confirmation = this.refs.password_confirmation.value.trim();
     $.ajax({
-      url: "http://localhost:3000/users",
+      url: "/users",
       method: 'POST',
       data: { first_name:            first_name,
               last_name:             last_name,
