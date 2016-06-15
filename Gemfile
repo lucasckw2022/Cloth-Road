@@ -62,7 +62,7 @@ gem 'pinterest-api'
 
 gem 'rails_12factor', group: :production
 
-gem 'sprockets', '2.9'
+gem 'sprockets'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
