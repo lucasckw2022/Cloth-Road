@@ -12,5 +12,4 @@
 /log/*
 !/log/.keep
 /tmp
-/config/secrets.yml
 /config/initializers/app_keys.rb
