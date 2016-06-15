@@ -7,6 +7,10 @@ body {
   background: linear-gradient(to left, rgba(255, 161, 127, 0.7), #00223e);
 }
 
+h1 {
+  font-family: 'Pacifico', cursive;
+}
+
 .pagination {
   bottom: 40px;
   position: relative;
@@ -111,15 +115,52 @@ body {
 // user sign up/sign in page
 .sign-in-form.container, .post-form.container, .post-container.container {
   width: 100%;
-  .error_message{
+
+  .error_message {
     color: red;
+  }
+
+  .table {
+    border-collapse: separate;
+    border-spacing: 0px 5px;
+
+    th {
+      background: #FF5F25;
+      color: #FFF;
+    }
+
+    tr{
+      background: #f5f5f5;
+
+      td {
+        border: none;
+
+        a {
+          color: #333;
+        }
+      }
+    }
+  }
+
+  .well p {
+    margin: 0 0 0 10px;
+    word-break: break-word;
+  }
+
+  .comments {
+    padding: 15px;
+    word-break: break-word;
+    background: #f5f5f5;
+    box-sizing: border-box;
+    margin: 5px;
   }
 }
 
 .userForm.container {
   padding: 52px 0 0 0;
   color: #FFF;
-  .error_message{
+
+  .error_message {
     color: red;
   }
 }

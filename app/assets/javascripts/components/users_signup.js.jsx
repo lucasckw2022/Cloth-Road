@@ -15,14 +15,14 @@ class UserSignUpForm extends React.Component{
     $.ajax({
       url: "http://localhost:3000/users",
       method: 'POST',
-      data: { first_name:            first_name, 
-              last_name:             last_name, 
-              email:                 email, 
-              password:              password, 
+      data: { first_name:            first_name,
+              last_name:             last_name,
+              email:                 email,
+              password:              password,
               password_confirmation: password_confirmation},
     }).
     done((data) => {
-      HistoryLocation.push("/style")
+      HistoryLocation.push("/")
     }).
     fail((xhr, status, err) => {
       var error_list = [];

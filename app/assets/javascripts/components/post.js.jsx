@@ -120,11 +120,11 @@ class PostContainer extends React.Component{
     return(
         <div>
           <h1>Community</h1>
-          <table className="table table-striped">
+          <table className="table table-responsive">
             <tbody>
               <tr>
                 <th>Post</th>
-                <th>From</th>
+                <th>Created By</th>
               </tr>
               {this.printPosts()}
             </tbody>
@@ -154,9 +154,11 @@ class PostContainer extends React.Component{
   showPost(){
     return(
       <div>
-        <h1>{this.state.post.title}</h1>
-        <p>{this.state.post.body}</p>
-        {this.state.toggleCommentForm == false ? null : <CommentContainer comments={this.state.post.comments}/> }
+        <Well>
+          <h1>{this.state.post.title}</h1>
+          <p>{this.state.post.body}</p>
+        </Well>
+        <CommentContainer comments={this.state.post.comments}/>
         {this.state.toggleCommentForm ?
           <CommentForm
           post={this.state.post.id}
@@ -170,7 +172,7 @@ class PostContainer extends React.Component{
           href="javascript:void(0)"
           className="btn btn-default"
           onClick={this.toggleCommentForm}>
-            New Comment
+            {this.state.toggleCommentForm ? "Close Comment Form" : "New Comment"}
           </a>}
         <a
         href="javascript:void(0)"

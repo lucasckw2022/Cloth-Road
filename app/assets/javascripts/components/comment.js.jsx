@@ -6,10 +6,10 @@ class CommentContainer extends React.Component{
     return this.props.comments.map((comment)=>{
       return (
         <div className="comments" key={comment.id} >
-          <div className="col-sm-3">
+          <div>
             <strong>{comment.user.first_name} {comment.user.last_name}:</strong>
           </div>
-          <div className="col-sm-9">{comment.body}</div>
+          <div>{comment.body}</div>
         </div>
       )
     })
