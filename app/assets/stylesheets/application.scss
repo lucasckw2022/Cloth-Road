@@ -82,7 +82,7 @@
 
    .female:hover, .male:hover {
      .to-female {
-       right: 42vh
+       right: 42vh;
      }
 
      .to-male {
@@ -128,4 +128,81 @@
  @keyframes homepageAnimation-female {
    0% {background-position: 40% 50%}
    100% {background-position: 100% 50%}
+ }
+
+ @media screen and (max-device-width:1024px){
+   .homepage {
+     .female {
+       img {
+         right: -20vh;
+       }
+     }
+
+     .male {
+       img {
+         left: 10vh;
+       }
+     }
+
+     .female:hover, .male:hover {
+       .to-female {
+         right: 25vh;
+       }
+
+       .to-male {
+         left: 20vh;
+       }
+     }
+   }
+ }
+
+ @media screen and (max-width: 768px){
+   .homepage {
+
+     .redirect {
+       width: 100%;
+       text-align: center;
+     }
+
+     .male {
+       img {
+         top: 25%;
+         left: 6vh;
+         height: 20%;
+         z-index: 3;
+         -webkit-filter: grayscale(0);
+       }
+
+       .to-male {
+         top: 30%;
+         left: 0;
+       }
+     }
+
+     .female {
+       img {
+         width: auto;
+         left: 0;
+         top: 50%;
+         height: 21%;
+         z-index: 3;
+         -webkit-filter: grayscale(0);
+       }
+
+       .to-female {
+         top: 55%;
+         right: 0;
+       }
+     }
+
+     .female:hover, .male:hover {
+       .to-female {
+         right: 0;
+       }
+
+       .to-male {
+         left: 0;
+       }
+     }
+   }
  }

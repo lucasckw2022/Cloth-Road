@@ -70,6 +70,8 @@ h1 {
 
     img {
       margin: 0 auto;
+      min-height: 92vh;
+      max-height: 92vh;
     }
   }
   .image-item.col-sm-6 {
@@ -162,5 +164,44 @@ h1 {
 
   .error_message {
     color: red;
+  }
+}
+
+@media screen and (max-width: 768px){
+  body {
+    overflow: auto !important;
+  }
+
+  .image-container .image-item.col-sm-6 {
+    height: 143vh;
+
+    .images {
+      width: 50%;
+      display: inline-table;
+      height: 75vh;
+
+      img {
+        height: 75vh;
+      }
+    }
+  }
+
+  .pagination {
+      bottom: -4px;
+  }
+  
+  .modal.in .modal-dialog {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .image-container .image-item.col-sm-6 {
+    height: 293vh;
+
+    .images {
+      width: 100%;
+    }
   }
 }

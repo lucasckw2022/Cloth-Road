@@ -16,16 +16,11 @@ class ImageSlider extends React.Component{
     this.props.onClick(link, provider, source);
   }
   render(){
-    var style = {
-      minHeight: "92vh",
-      maxHeight: "92vh"
-    }
     var carouselItems = this.props.images.map(image => {
       if(this.props.imageType == image.styleType){
         return (
           <Carousel.Item key={image.id}>
             <img
-            style={style}
             src={image ? image.link : null}
             onClick={()=>this.handleClick(image.link, image.provider, image.source)} />
           </Carousel.Item>)
@@ -156,7 +151,7 @@ class ImageContainer extends React.Component{
         onClick={this.openModal}
         images={this.state.sliderImages}
         imageType={this.state.imageType}/>
-        <div className="image-item col-sm-6">
+        <div className="image-item col-sm-6 col-xs-12">
           {this.printImage()}
         </div>
         <ImageModal
@@ -168,7 +163,7 @@ class ImageContainer extends React.Component{
         <Pagination
         ellipsis
         boundaryLinks
-        maxButtons={6}
+        maxButtons={5}
         items={this.countPage()}
         activePage={this.state.activePage}
         onSelect={this.handleSelect} />

@@ -22,7 +22,7 @@ class Homepage extends React.Component{
       <div className={this.state.style}>
         <center className="logo">Cloth Road</center>
         <div className="male">
-          <img src="https://i.imgsafe.org/8743f1b1c1.png"/>
+          <img src="https://i.imgsafe.org/8743f1b1c1.png" />
           <div className="redirect to-male" onClick={this.toMaleLink}>Gentleman</div>
         </div>
         <div className="female">
