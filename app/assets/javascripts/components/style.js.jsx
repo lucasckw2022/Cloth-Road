@@ -78,7 +78,7 @@ class ImageContainer extends React.Component{
       this.setState({imageType: "Male"})
     }
     $.ajax({
-      url: "/photos.json",
+      url:    "/photos.json",
       method: "GET"
     }).
     done((data) => {
